@@ -1,0 +1,5 @@
+---
+- name: Reload service systemd-logind.service
+  service:
+    name: systemd-logind.service
+    state: reloaded

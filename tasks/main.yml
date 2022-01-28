@@ -1,0 +1,17 @@
+---
+# tasks file for mnoverraz.disabled-suspend
+- name: Create /etc/systemd/sleep.conf.d/ directory
+  file:
+    path: /etc/systemd/sleep.conf.d/
+    state: directory
+    mode: 0755
+
+- name: Copy the nosuspend config file
+  template:
+    src: nosuspend.conf.j2
+    dest: "/etc/systemd/sleep.conf.d/nosuspend.conf"
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - Reload service systemd-logind.service
